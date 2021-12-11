@@ -1,0 +1,29 @@
+{
+  "name": "typescriptlesson",
+  "version": "1.0.0",
+  "description": "a typescript lesson demo",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "set NODE_ENV=development && webpack-dev-server  --config ./build/webpack.config.js",
+    "build": "set NODE_ENV=production && webpack --config ./build/webpack.config.js"
+  },
+  "keywords": [
+    "typescript",
+    "source_code"
+  ],
+  "author": "zhuotiantian",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.3"
+  }
+}

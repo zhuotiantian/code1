@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+  let list = [
+    {
+      key: 1,
+      title: '一级',
+      parentKey: 0,
+      status: { choose: false },
+      children: [
+        {
+          key: 10,
+          title: '一级-0',
+          parentKey: 1,
+          status: { choose: false },
+          children: [{ key: 15, title: '一级-0-1', parentKey: 10, status: { choose: false } }]
+        },
+        { key: 11, title: '一级-1', parentKey: 1, status: { choose: false } },
+        { key: 12, title: '一级-2', parentKey: 1, status: { choose: false } },
+        { key: 13, title: '一级-3', parentKey: 1, status: { choose: false } },
+        { key: 14, title: '一级-4', parentKey: 1, status: { choose: false } }
+      ]
+    }
+  ];
+
+  function makeRevMap(list, parents) {
+    const ret = {};
+    list.reduce((result, item) => {
+      ret[item.key] = parents.concat(item);
+      if (Array.isArray(item.children)) {
+        Object.assign(result, makeRevMap(item.children, parents.concat(item)));
+      }
+    }, ret);
+    return ret;
+  }
+
+  const rev = makeRevMap(list, []);
+  console.log(rev);
+  function choose(key) {
+    for (const item of rev[key]) {
+      item.status.choose = true;
+    }
+  }
+
+  choose(15);
+  JSON.stringify(list, null, 2);
+</script>
+
+</html>

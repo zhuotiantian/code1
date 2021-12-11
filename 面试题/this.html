@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    var demo = '';
+
+    function test() {
+      var abc = 123;
+      console.log('test' + this);
+      demo = function () {
+        console.log('demo' + this);
+        console.log(abc);
+      };
+    }
+
+
+    var a = 10;
+    var obj = {
+      a: 20,
+      getA: () => {
+        //箭头函数中的this指向它当前所在的作用域，即包含它的函数，如果没有，则是全局作用域
+        console.log(this.a);
+      }
+    };
+    // obj.getA();
+
+
+
+    // class Person {
+    //   constructor({
+    //     name = "aaa"
+    //   } = {}) {
+    //     this.name = name;
+    //   }
+    // };
+    // const p1 = new Person();
+    // console.log(p1.name);
+
+    //当未使用new时，函数中的this指向全局window
+    function Person(firstname, lastname) {
+      this.firstname = firstname;
+      this.lastname = lastname;
+      console.log(this);
+    };
+    const lisa = Person("lisa", "rong");
+    console.log(lisa);
+
+    console.log(firstname);
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

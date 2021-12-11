@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #div1 {
+      height: 300px;
+      width: 300px;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div1">111</div>
+  <script>
+    let num = 0;
+    const oDiv1 = document.getElementById("div1");
+    // const debounce = (fn, delay) => {
+    //   let timer = null;
+    //   return function (...arg) {
+    //     if (timer) clearTimeout(timer);
+    //     timer = setTimeout(() => {
+    //       fn.call(this, ...arg);
+    //     }, delay);
+    //   }
+    // }
+
+    const changeNum = function () {
+      num++;
+      oDiv1.innerHTML = num;
+    }
+
+    const throttle = (fn, delay) => {
+      let timer = null;
+      return function () {
+        if (timer) return;
+        timer = setTimeout(() => {
+          fn();
+          clearTimeout(timer);
+          timer = null;
+        }, delay);
+      }
+    }
+
+    oDiv1.onmousemove = throttle(function () {
+      changeNum();
+    }, 1000);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    var truncateSentence = function (s, k) {
+      const len = s.length;
+      let target = 0, count = 0;
+      for (let i = 0; i < len; i++) {
+        if (s[i] === ' ') {
+          count++;
+        }
+        if (count === k) {
+          target = i;
+          break;
+        }
+      }
+      return s.slice(0, target);
+    };
+    // truncateSentence("chopper is not a tanuki", 5); 
+    const map = new Map([
+      [')', '('],
+      ['}', '{'],
+      [']', '[']
+    ]);
+    var lengthOfLongestSubstring = function (s) {
+      if (s.length < 2) return s.length;
+      let right = 0, result = 0, len = s.length, set = new Set();
+      for (let i = 0; i < len; i++) {
+        let cur = s[i];
+        if (i !== 0) {
+          set.delete(cur);
+        };
+        while (right < len && !set.has(cur)) {
+          set.add(cur);
+        };
+        result = Math.max(result, right - i + 1);
+      }
+      return result;
+    }
+    lengthOfLongestSubstring("abcabcbb")
+  </script>
+</body>
+
+</html>
